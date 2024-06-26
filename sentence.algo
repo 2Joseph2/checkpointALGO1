@@ -1,0 +1,63 @@
+//MAIN ALGORITHME
+ALGORITHM sentence
+VAR
+    s:STRING
+BEGIN
+    CALL input(s)
+    CALL len_s(s)
+    CALL N_word(s)
+    CALL N_vowel(s)
+END
+//THE INPUT OF THE SENTENCE S
+PROCEDURE input(s)
+
+BEGIN
+    Write("Enter ur sentence: ")
+    Read(s)
+END
+//THE DISPLAY OF THE LENGTH OF THE SENTENCE (CARACTERS)
+PROCEDURE len_s(s)
+VAR
+    i:INTEGER
+    len:INTEGER
+BEGIN
+    FOR i FROM 1 TO LENGTH(s)  DO
+        IF NOT (s[i] = " " AND s[i] = ".") THEN
+            len := len + 1
+        END_IF
+    END_FOR
+    Write("The length of the sentence is: ", len)
+END
+//THE DISPLAY OF THE NUMBER OF WORDS IN THE SENTENCE
+PROCEDURE N_word(s)
+VAR
+    num:INTEGER
+    inWord:BOOLEAN
+    i:INTEGER
+BEGIN
+    num := 0
+    inWord := FALSE
+    FOR i FROM 1 TO LENGTH(s)  DO
+        IF (NOT (s[i] = " " AND s[i] = ".") AND inWord=FALSE) THEN
+            num:= num+1
+            inWord:=TRUE
+        ELSE
+            IF (s[i] = " " AND s[i] = "." AND inWord=TRUE) THEN
+                inWord := FALSE
+            END_IF
+        END_IF
+    END_FOR
+    Write("The number of words is: ", num)
+END
+//THE DISPLAY OF THE NUMBER OF VOWELS IN THE SENTENCE
+PROCEDURE N_vowel(s)
+VAR
+    num:INTEGER
+BEGIN
+    FOR i FROM 1 TO LENGTH(s)  DO
+        IF (s[i] IN ["a", "e", "i", "o", "u","A", "E", "I", "O", "U"]) THEN
+            num:=num+1
+        END_IF
+    END_FOR
+    Write("The number of vowels is: ", num)
+END
